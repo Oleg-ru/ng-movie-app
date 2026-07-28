@@ -1,7 +1,9 @@
-@if (discovers | async; as film) {
-  @for (film of film.result; track film.id) {
+Фильмы
+@if (discovers | async; as films) {
+  <div>Есть {{films.total_results}} фильмов</div>
+  @for (film of films.results; track film.id) {
     <div>
-      result
+      {{film.title}}
     </div>
   }
 }

@@ -11,5 +11,5 @@ import { AsyncPipe } from '@angular/common';
 })
 export class App {
   discoverService = inject(SERVICE.discover);
-  discovers = this.discoverService.getNowPlaying();
+  discovers = this.discoverService.getMovieList('1', 'popular');
 }
