@@ -1,0 +1,9 @@
+<div class="movie-card">
+  <img [src]="'https://media.themoviedb.org/t/p/w440_and_h660_face' + movie()?.poster_path" alt="">
+  <div class="title">
+    {{movie()?.title}}
+  </div>
+  <div class="release-date">
+    {{movie()?.release_date}}
+  </div>
+</div>
