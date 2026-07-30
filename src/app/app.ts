@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SERVICE } from './core/core';
 import { AsyncPipe } from '@angular/common';
 import { MovieCard } from './features/movies/components/movie-card/movie-card';
 
