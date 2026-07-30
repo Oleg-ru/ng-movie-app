@@ -1,10 +1,1 @@
-Фильмы
-<!--<img src="https://media.themoviedb.org/t/p/w440_and_h660_face/gcAZ5f6Y40koGYcfPUqb2tmnVd.jpg" alt="">-->
-
-@if (discovers | async; as films) {
-  <div>Есть {{films.total_results}} фильмов</div>
-  @for (film of films.results; track film.id) {
-    <app-movie-card [movie]="film"></app-movie-card>
-  }
-}
 <router-outlet />

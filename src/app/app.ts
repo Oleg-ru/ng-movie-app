@@ -11,6 +11,5 @@ import { MovieCard } from './features/movies/components/movie-card/movie-card';
   styleUrl: './app.scss',
 })
 export class App {
-  discoverService = inject(SERVICE.discover);
-  discovers = this.discoverService.getMovieList('1', 'popular');
+
 }
