@@ -25,3 +25,5 @@ export interface MovieListResponse {
   total_pages: number;
   total_results: number;
 }
+
+export type MoviesList = 'now_playing' | 'popular' | 'top_rated' | 'upcoming' | null;
