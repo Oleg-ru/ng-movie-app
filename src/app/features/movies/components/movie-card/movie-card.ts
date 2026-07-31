@@ -9,4 +9,9 @@ import { Movie } from '../../../../core/models/MovieList';
 })
 export class MovieCard {
   movie = input<Movie>();
+
+  handleImageError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    img.src = '/assets/no-image.jpg';
+  }
 }
