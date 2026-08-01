@@ -1,0 +1,26 @@
+.header {
+  padding: 0 200px;
+  height: 64px;
+  background: #032541;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.nav-wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 154px 1fr;
+  align-items: center;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  grid-gap: 30px;
+}
+
+.nav-menu__item {
+  list-style: none;
+  padding: 0;
+  cursor: pointer;
+}

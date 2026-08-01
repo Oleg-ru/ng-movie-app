@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="nav-wrapper">
+    <a href="">
+      Логотип
+      <img src="" alt="">
+    </a>
+    <ul class="nav-menu">
+      @for (itemMenu of menuList; track itemMenu) {
+        <li class="nav-menu__item">
+          {{itemMenu}}
+        </li>
+      }
+    </ul>
+  </div>
+</header>
