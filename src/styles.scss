@@ -2,6 +2,7 @@
 
 :root {
   --primary-color: #fff;
+  --padding-right-left-200: 0 200px;
 }
 
 * {
@@ -9,6 +10,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Source Sans 3', sans-serif;
+}
+
+main {
+  padding: 30px 200px;
 }
 
 a {

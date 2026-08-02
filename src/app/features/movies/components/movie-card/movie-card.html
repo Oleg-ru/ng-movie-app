@@ -8,6 +8,6 @@
     {{movie()?.title}}
   </div>
   <div class="release-date">
-    {{movie()?.release_date}}
+    {{movie()?.release_date | date:'d MMMM yyyy'}}
   </div>
 </div>

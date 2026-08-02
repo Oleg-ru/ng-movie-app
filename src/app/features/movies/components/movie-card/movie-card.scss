@@ -1,5 +1,17 @@
+.movie-card {
+  width: 183px;
+  height: 366px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgb(128 128 128 / 0.25);
+}
+
 .card-img {
   width: 183px;
   height: 274px;
   object-fit: contain;
+}
+
+.release-date {
+  fill-size: 16px;
+  font-weight: 300;
 }

@@ -1,0 +1,10 @@
+.movie-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(183px, 1fr));
+  gap: 20px 10px;
+}
+
+.movie-list__title {
+  font-size: 25px;
+}
