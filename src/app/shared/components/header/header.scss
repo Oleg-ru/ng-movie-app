@@ -20,7 +20,31 @@
 }
 
 .nav-menu__item {
+  position: relative;
   list-style: none;
   padding: 0;
   cursor: pointer;
+}
+
+.item-submenu {
+  display: grid;
+  grid-template-columns: max-content;
+  position: absolute;
+  top: 25px;
+  width: max-content;
+  height: max-content;
+  padding: 8px 0;
+  background: var(--primary-color);
+  border: 1px solid rgb(128 128 128 / 0.50);
+  border-radius: 5px;
+  color: black;
+}
+
+.item-submenu__item {
+  padding: 5px 10px 5px 10px;
+  font-weight: 300;
+
+  &:hover {
+    background: rgb(128 128 128 / 0.20);
+  }
 }

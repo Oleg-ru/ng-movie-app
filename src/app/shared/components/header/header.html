@@ -6,8 +6,18 @@
     </a>
     <ul class="nav-menu">
       @for (itemMenu of menuList; track itemMenu) {
-        <li class="nav-menu__item">
+        <li class="nav-menu__item" (mouseenter)="toggleMenu(itemMenu)" (mouseleave)="isClose(itemMenu)">
           {{itemMenu}}
+
+          @if (isOpen(itemMenu)) {
+            <div class="item-submenu">
+              @for (menu of subMenu(); track menu) {
+                <div class="item-submenu__item">
+                  {{menu}}
+                </div>
+              }
+            </div>
+          }
         </li>
       }
     </ul>
