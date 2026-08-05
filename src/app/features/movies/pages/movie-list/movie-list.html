@@ -1,4 +1,4 @@
-@if (discovers$ | async; as films) {
+@if (movies$ | async; as films) {
   <div class="movie-list__title">{{currentTitle$ | async}} фильмы</div>
   <div class="movie-list">
     @for (film of films.results; track film.id) {

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MovieCard } from '../../components/movie-card/movie-card';
-import { SERVICE } from '../../../../core/core';
+import { SERVICES } from '../../../../core/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesList } from '../../../../core/models/MovieList';
 import { catchError, map, of, switchMap } from 'rxjs';
@@ -14,7 +14,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class MovieList {
   private activatedRoute = inject(ActivatedRoute);
-  protected discoverService = inject(SERVICE.discover);
+  protected movieService = inject(SERVICES.movies);
   protected titleList: Record<Exclude<MoviesList, null>, string> = {
     popular: 'Популярные',
     now_playing: 'Сейчас смотрят',
@@ -26,9 +26,9 @@ export class MovieList {
   protected category$ = this.activatedRoute.params.pipe(
     map((params) => params['category'] ?? 'popular'),
   );
-  protected discovers$ = this.category$.pipe(
+  protected movies$ = this.category$.pipe(
     switchMap((category: MoviesList) => {
-      return this.discoverService.getMovieList('1', category);
+      return this.movieService.getMovieList('1', category);
     }),
     catchError((err) => {
       console.error(err);
