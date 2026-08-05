@@ -11,7 +11,7 @@ export interface SubMenuItem {
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    id: 'movie',
+    id: 'movies',
     title: 'Фильмы',
     children: [
       {
