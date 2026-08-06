@@ -22,4 +22,17 @@ export class MovieListService {
       },
     });
   }
+
+  getTvList(page = '1', type: MoviesList) {
+    return this.http.get(`${BASE_API_URL}/tv/${type}`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${ENVIRONMENT.apiKey}`,
+      },
+      params: {
+        language: 'ru-RU',
+        page
+      },
+    });
+  }
 }
