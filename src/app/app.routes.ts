@@ -4,7 +4,7 @@ import { MovieList } from './features/movies/pages/movie-list/movie-list';
 
 export const routes: Routes = [
   {path: "", component: Welcome},
-  {path: 'movies', children: [
+  {path: ':movieType', children: [
       {path: '', redirectTo: 'popular', pathMatch: 'full'},
       {path: ':category', component: MovieList}
     ]}

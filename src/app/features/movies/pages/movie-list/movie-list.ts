@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { MovieCard } from '../../components/movie-card/movie-card';
 import { SERVICES } from '../../../../core/core';
 import { ActivatedRoute } from '@angular/router';
-import { MoviesList } from '../../../../core/models/MovieList';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { MovieListResponse, MoviesList } from '../../../../core/models/MovieList';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -26,9 +26,22 @@ export class MovieList {
   protected category$ = this.activatedRoute.params.pipe(
     map((params) => params['category'] ?? 'popular'),
   );
-  protected movies$ = this.category$.pipe(
-    switchMap((category: MoviesList) => {
-      return this.movieService.getMovieList('1', category);
+
+  protected movies$ = this.activatedRoute.params.pipe(
+    //TO-DO добавить map распрасить данные, далее tap для обновления заголовка и далее свич мап загрузки данных по результату map
+    switchMap((params: Record<string, string>) => {
+      const category = params['category'] ?? 'popular';
+      const movieType = params['movieType'];
+
+      if (movieType === 'movies') {
+        return this.movieService.getMovieList('1', category);
+      }
+
+      if (movieType === 'tv') {
+        return this.movieService.getTvList('1', category);
+      }
+
+      return of(null);
     }),
     catchError((err) => {
       console.error(err);
@@ -38,26 +51,4 @@ export class MovieList {
   protected currentTitle$ = this.category$.pipe(
     map((category: MoviesList) => this.titleList[category ?? 'popular'] || 'Фильмы'),
   );
-
-  //Императивная
-  // protected category = signal<MoviesList>('popular');
-  // protected discovers = signal<MovieListResponse | null>(null);
-  // protected currentTitle = computed(() => {
-  //   const title = this.category();
-  //   return this.titleList[title ?? 'popular'] ?? 'Фильмы';
-  // });
-  // loadMovies() {
-  //   this.discoverService.getMovieList('1', this.category()).subscribe({
-  //     next: (data) => this.discovers.set(data),
-  //     error: (err) => console.error(err),
-  //   });
-  // }
-  // ngOnInit() {
-  //   this.activatedRoute.params.subscribe((params) => {
-  //     console.log(params['category']);
-  //     this.category.set(params['category']);
-  //     console.log(this.category());
-  //   });
-  //   this.loadMovies();
-  // }
 }
