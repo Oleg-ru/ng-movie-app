@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { MovieCard } from '../../components/movie-card/movie-card';
 import { SERVICES } from '../../../../core/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieListResponse, MoviesList } from '../../../../core/models/MovieList';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { MoviesList } from '../../../../core/models/MovieList';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

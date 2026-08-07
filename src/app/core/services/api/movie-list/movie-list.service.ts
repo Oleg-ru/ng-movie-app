@@ -2,8 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BASE_API_URL } from '../../../core';
 import { ENVIRONMENT } from '../../../../../environments/environment';
-import { MovieListResponse, MoviesList } from '../../../models/MovieList';
-import { Observable } from 'rxjs';
+import { MovieListResponse } from '../../../models/MovieList';
 
 @Injectable({
   providedIn: 'root',
