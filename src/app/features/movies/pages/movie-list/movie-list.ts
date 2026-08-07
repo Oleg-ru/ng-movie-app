@@ -3,7 +3,7 @@ import { MovieCard } from '../../components/movie-card/movie-card';
 import { SERVICES } from '../../../../core/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesList } from '../../../../core/models/MovieList';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
