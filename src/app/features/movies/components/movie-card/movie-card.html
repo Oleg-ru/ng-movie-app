@@ -5,9 +5,9 @@
        alt=""
   >
   <div class="title">
-    {{movie()?.title}}
+    {{getTitle(movie())}}
   </div>
   <div class="release-date">
-    {{movie()?.release_date | date:'d MMMM yyyy'}}
+    {{getDate(movie())}}
   </div>
 </div>

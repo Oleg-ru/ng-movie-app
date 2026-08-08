@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BASE_API_URL } from '../../../core';
 import { ENVIRONMENT } from '../../../../../environments/environment';
-import { MovieListResponse } from '../../../models/MovieList';
+import { Movie, MovieListResponse, Tv } from '../../../models/MovieList';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class MovieListService {
   http = inject(HttpClient);
 
   getMovieList(page = '1', type: String) {
-    return this.http.get<MovieListResponse>(`${BASE_API_URL}/movie/${type}`, {
+    return this.http.get<MovieListResponse<Movie>>(`${BASE_API_URL}/movie/${type}`, {
       headers: {
         accept: 'application/json',
         Authorization: `Bearer ${ENVIRONMENT.apiKey}`,
@@ -24,7 +24,7 @@ export class MovieListService {
   }
 
   getTvList(page = '1', type: String) {
-    return this.http.get<MovieListResponse>(`${BASE_API_URL}/tv/${type}`, {
+    return this.http.get<MovieListResponse<Tv>>(`${BASE_API_URL}/tv/${type}`, {
       headers: {
         accept: 'application/json',
         Authorization: `Bearer ${ENVIRONMENT.apiKey}`,
