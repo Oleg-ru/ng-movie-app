@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MovieCard } from '../../components/movie-card/movie-card';
 import { SERVICES } from '../../../../core/core';
 import { ActivatedRoute } from '@angular/router';
-import { MoviesList } from '../../../../core/models/MovieList';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { MENU_ITEMS } from '../../../../core/constants/menu.constants';
 
 @Component({
   selector: 'app-movie-list',
@@ -15,21 +15,25 @@ import { AsyncPipe } from '@angular/common';
 export class MovieList {
   private activatedRoute = inject(ActivatedRoute);
   protected movieService = inject(SERVICES.movies);
-  protected titleList: Record<Exclude<MoviesList, null>, string> = {
-    popular: 'Популярные',
-    now_playing: 'Сейчас смотрят',
-    top_rated: 'Лучшие',
-    upcoming: 'Ожидаемые',
-  };
+  protected currentTitle = signal('');
 
   //Реактивная
-  protected category$ = this.activatedRoute.params.pipe(
-    map((params) => params['category'] ?? 'popular'),
-  );
-
   protected movies$ = this.activatedRoute.params.pipe(
-    //TO-DO добавить map распрасить данные, далее tap для обновления заголовка и далее свич мап загрузки данных по результату map
-    switchMap((params: Record<string, string>) => {
+    map((param) => {
+      const title = MENU_ITEMS.find((item) => item.id === param['movieType'])?.children.find(
+        (child) => child.route === param['category'],
+      );
+
+      return {
+        ...param,
+        title: title?.label,
+      };
+    }),
+    //@ts-ignore
+    tap((item) => {
+      this.currentTitle.set(item.title ?? 'Фильмы');
+    }),
+    switchMap((params: { category: string; movieType: string; title: string }) => {
       const category = params['category'] ?? 'popular';
       const movieType = params['movieType'];
 
@@ -47,8 +51,5 @@ export class MovieList {
       console.error(err);
       return of(null);
     }),
-  );
-  protected currentTitle$ = this.category$.pipe(
-    map((category: MoviesList) => this.titleList[category ?? 'popular'] || 'Фильмы'),
   );
 }
