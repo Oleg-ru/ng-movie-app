@@ -16,6 +16,7 @@ export class MovieList {
   private activatedRoute = inject(ActivatedRoute);
   protected movieService = inject(SERVICES.movies);
   protected currentTitle = signal('');
+  protected movieType = signal('');
 
   //Реактивная
   protected movies$ = this.activatedRoute.params.pipe(
@@ -31,17 +32,19 @@ export class MovieList {
     }),
     //@ts-ignore
     tap((item) => {
-      this.currentTitle.set(item.title ?? 'Фильмы');
+      this.currentTitle.set(item.title ?? '');
     }),
     switchMap((params: { category: string; movieType: string; title: string }) => {
       const category = params['category'] ?? 'popular';
       const movieType = params['movieType'];
 
       if (movieType === 'movies') {
+        this.movieType.set('фильмы')
         return this.movieService.getMovieList('1', category);
       }
 
       if (movieType === 'tv') {
+        this.movieType.set('сериалы');
         return this.movieService.getTvList('1', category);
       }
 
