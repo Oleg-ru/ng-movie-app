@@ -2,8 +2,7 @@
   <img [src]="'https://media.themoviedb.org/t/p/w440_and_h660_face' + movie()?.poster_path"
        (error)="handleImageError($event)"
        class="card-img"
-       alt=""
-  >
+   alt="карточка">
   <div class="title">
     {{getTitle(movie())}}
   </div>
